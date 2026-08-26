@@ -1,0 +1,27 @@
+{
+  "name": "@meidoya-yashiki/store-sqlite",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Yashiki local registry SQLite store and migration framework.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && mkdir -p dist/migrations && cp src/migrations/*.sql dist/migrations/",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@meidoya-yashiki/receipts": "workspace:*",
+    "@meidoya-yashiki/yashiki-core": "workspace:*",
+    "better-sqlite3": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11"
+  }
+}

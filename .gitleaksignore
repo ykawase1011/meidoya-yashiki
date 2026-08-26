@@ -1,0 +1,6 @@
+# Historical test fixtures containing dummy RSA PEM blocks. The current tests
+# build their markers from fragments, so only these exact old findings are ignored.
+fa2a0cab8ae994b274254645acf10df3cded9aa4:apps/meidoya-yashiki/src/cli.test.ts:private-key:146
+4d5c52cd802933dc237f93344d86e2d15328078c:apps/meidoya-yashiki/src/app.test.ts:private-key:79
+c3163533cd4d1db03e5b9c4571f92af13a6b75a4:packages/credentials/src/materializer.test.ts:private-key:274
+c3163533cd4d1db03e5b9c4571f92af13a6b75a4:packages/receipts/src/receipt.test.ts:private-key:92

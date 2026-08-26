@@ -1,0 +1,75 @@
+# Example ~/.config/meidoya-yashiki/config.yaml
+schema_version: 1
+
+# The meidoya-node release Yashiki pins. The manifest bytes must hash to
+# manifest_sha256 before any artifact inside it is trusted.
+node_bundle:
+  version: 0.1.0
+  protocol_version: 1
+  manifest_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+
+nodes:
+  work-grammarxiv:
+    provider: lima
+    profile: lima-trusted
+    platform: linux
+    arch: arm64
+    cpus: 8
+    memory: 16GiB
+    disk: 100GiB
+    max_concurrency: 4
+
+    capabilities:
+      - repo.read
+      - repo.write
+      - shell
+      - test
+
+    control_plane:
+      endpoint: tcp://host.lima.internal:47777
+      temporal_address: host.lima.internal:17233
+      task_queue: meidoya/node/work-grammarxiv
+
+    model_environment:
+      MEIDOYA_MODEL_CODEX_HIGH: gpt-5.6-sol
+      MEIDOYA_MODEL_CODEX_STANDARD: gpt-5.6-sol
+      MEIDOYA_MODEL_CLAUDE_HIGH: opus
+      MEIDOYA_MODEL_CLAUDE_STANDARD: sonnet
+
+    # Mounts are node-local configuration only. Mounting the host home (or any
+    # ancestor of it) is rejected.
+    mounts:
+      - source: ~/Workspace/Repositories/GrammarXiv
+        target: /workspace/GrammarXiv
+        writable: true
+
+    # Values are read from the host Keychain, SOPS, a validated private file,
+    # or the exact Hermes SOPS Claude selector at provisioning time and never
+    # appear in argv, logs or receipts. One file and one receipt each.
+    # Supported refs include keychain:, sops:, private-file:/absolute/path and
+    # hermes-sops:/absolute/document.sops.yaml#claude.code_oauth_token.
+    credentials:
+      - provider: codex
+        source_ref: keychain:meidoya/codex-login
+        guest_path: /home/meidoya/.codex/auth.json
+        mode: "0600"
+        owner: meidoya
+
+      - provider: claude
+        source_ref: keychain:meidoya/claude-subscription
+        guest_path: /home/meidoya/.claude/token
+        mode: "0600"
+        owner: meidoya
+
+      - provider: node-registration
+        source_ref: keychain:meidoya/node-registration-token
+        guest_path: /home/meidoya/.config/meidoya-node/registration.token
+        mode: "0400"
+        owner: meidoya
+
+      - provider: github
+        source_ref: sops:~/.config/meidoya/secrets.yaml
+        guest_path: /home/meidoya/.config/gh/hosts.yml
+        mode: "0600"
+        owner: meidoya
+        optional: true

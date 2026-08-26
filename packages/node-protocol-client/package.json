@@ -1,0 +1,19 @@
+{
+  "name": "@meidoya-yashiki/node-protocol-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Vendored type-only mirror of the @meidoya/node-protocol wire contract.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}

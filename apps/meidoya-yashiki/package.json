@@ -1,0 +1,29 @@
+{
+  "name": "meidoya-yashiki",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "meidoya-yashiki CLI: the Meidoya Infrastructure Plane.",
+  "bin": {
+    "meidoya-yashiki": "./dist/main.js"
+  },
+  "main": "./dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@meidoya-yashiki/backup": "workspace:*",
+    "@meidoya-yashiki/credentials": "workspace:*",
+    "@meidoya-yashiki/doctor": "workspace:*",
+    "@meidoya-yashiki/node-bundle": "workspace:*",
+    "@meidoya-yashiki/node-protocol-client": "workspace:*",
+    "@meidoya-yashiki/node-provisioner": "workspace:*",
+    "@meidoya-yashiki/provider-lima": "workspace:*",
+    "@meidoya-yashiki/provider-native": "workspace:*",
+    "@meidoya-yashiki/receipts": "workspace:*",
+    "@meidoya-yashiki/recovery": "workspace:*",
+    "@meidoya-yashiki/store-sqlite": "workspace:*",
+    "@meidoya-yashiki/yashiki-core": "workspace:*"
+  }
+}

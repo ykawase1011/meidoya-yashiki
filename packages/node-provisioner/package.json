@@ -1,0 +1,28 @@
+{
+  "name": "@meidoya-yashiki/node-provisioner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Idempotent provisioning lifecycle with read-back verification and node locking.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@meidoya-yashiki/credentials": "workspace:*",
+    "@meidoya-yashiki/node-bundle": "workspace:*",
+    "@meidoya-yashiki/receipts": "workspace:*",
+    "@meidoya-yashiki/yashiki-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@meidoya-yashiki/node-protocol-client": "workspace:*"
+  }
+}

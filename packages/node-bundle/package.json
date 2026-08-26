@@ -1,0 +1,24 @@
+{
+  "name": "@meidoya-yashiki/node-bundle",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pinned meidoya-node release manifest, checksum verification and artifact-mismatch refusal.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@meidoya-yashiki/node-protocol-client": "workspace:*",
+    "@meidoya-yashiki/receipts": "workspace:*",
+    "@meidoya-yashiki/yashiki-core": "workspace:*"
+  }
+}
